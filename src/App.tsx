@@ -24,7 +24,14 @@ function App() {
   }, [selectedYear]);
 
   const getClassificationImage = (year: number) => {
-    return `https://placehold.co/900x650/2d5016/ffffff?text=Mangrove+Classification+${year}`;
+    // Import gambar lokal dari folder assets/images
+    // Nama file harus: mangrove-1990.jpg, mangrove-2000.jpg, dst.
+    try {
+      return new URL(`./assets/images/mangrove-${year}.jpg`, import.meta.url).href;
+    } catch {
+      // Fallback ke placeholder jika gambar tidak ditemukan
+      return `https://placehold.co/900x650/2d5016/ffffff?text=Mangrove+Classification+${year}`;
+    }
   };
 
   const getYearStats = (year: number) => {
