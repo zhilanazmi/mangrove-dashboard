@@ -18,13 +18,22 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// Import gambar klasifikasi
+import img1990 from "./assets/images/CLASS_RF_1990.png";
+import img2000 from "./assets/images/CLASS_RF_2000.png";
+import img2010 from "./assets/images/CLASS_RF_2010.png";
+import img2015 from "./assets/images/CLASS_RF_2015.png";
+import img2020 from "./assets/images/CLASS_RF_2020.png";
+import img2023 from "./assets/images/CLASS_RF_2023.png";
+import img2025 from "./assets/images/CLASS_RF_2025.png";
+
 function App() {
   const [selectedYear, setSelectedYear] = useState(1990);
   const [hoveredYear, setHoveredYear] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [animateStats, setAnimateStats] = useState(false);
 
-  const years = [1990, 2000, 2010, 2020, 2025, 2030];
+  const years = [1990, 2000, 2010, 2020, 2023, 2025, 2030];
 
   const data: {
     [key: number]: {
@@ -103,15 +112,20 @@ function App() {
   }, [selectedYear]);
 
   const getClassificationImage = (year: number) => {
-    // Import gambar lokal dari folder assets/images
-    // Nama file harus: mangrove-1990.jpg, mangrove-2000.jpg, dst.
-    try {
-      return new URL(`./assets/images/mangrove-${year}.jpg`, import.meta.url)
-        .href;
-    } catch {
-      // Fallback ke placeholder jika gambar tidak ditemukan
-      return `https://placehold.co/900x650/2d5016/ffffff?text=Mangrove+Classification+${year}`;
-    }
+    const imageMap: { [key: number]: string } = {
+      1990: img1990,
+      2000: img2000,
+      2010: img2010,
+      2015: img2015,
+      2020: img2020,
+      2023: img2023,
+      2025: img2025,
+      2030: img2025, // Using 2025 as placeholder for 2030
+    };
+    return (
+      imageMap[year] ||
+      `https://placehold.co/900x650/2d5016/ffffff?text=Mangrove+Classification+${year}`
+    );
   };
 
   const getYearStats = (year: number) => {
@@ -326,14 +340,8 @@ function App() {
                     <h3 className="text-lg font-black text-white">
                       Peta Lokasi Mangrove
                     </h3>
-                    {/* <p className="text-xs text-emerald-300 font-semibold">
-                      Interactive KML Visualization
-                    </p> */}
                   </div>
                 </div>
-                {/* <div className="flex items-center gap-2 text-xs text-emerald-300 font-bold">
-                  <span className="hidden md:inline">🗺️ Google My Maps</span>
-                </div> */}
               </div>
               <iframe
                 src="https://www.google.com/maps/d/u/0/embed?mid=1Iy26aIpYhrYUutZoDCOp-QTPvfx8XXY&ehbc=2E312F&noprof=1&output=embed"
@@ -421,14 +429,6 @@ function App() {
                     </p>
                     <p className="text-white text-3xl font-black">
                       {selectedYear}
-                    </p>
-                  </div>
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-                    <p className="text-teal-300 text-xs font-bold uppercase">
-                      Status Monitoring
-                    </p>
-                    <p className="text-white text-sm font-bold mt-1">
-                      Aktif & Terpantau
                     </p>
                   </div>
                 </div>
@@ -548,15 +548,20 @@ function App() {
                   </div>
                 </div>
                 <div className="mt-6 bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300">
-                  <p className="text-gray-200 text-center text-lg">
-                    <span className="font-black text-emerald-300">
-                      Analisis Tahun {selectedYear}:
-                    </span>
-                    <br />
-                    Peta klasifikasi mangrove menunjukkan distribusi dan kondisi
-                    tutupan mangrove di wilayah monitoring dengan tingkat
-                    akurasi yang tinggi menggunakan teknologi satelit terkini.
-                  </p>
+                  <div className="text-center">
+                    <p className="text-gray-200 text-lg mb-4">
+                      <span className="font-black text-emerald-300">
+                        Peta Klasifikasi Tahun {selectedYear}
+                      </span>
+                    </p>
+                    <div className="rounded-xl overflow-hidden shadow-lg border border-emerald-400/20">
+                      <img
+                        src={getClassificationImage(selectedYear)}
+                        alt={`Klasifikasi Mangrove ${selectedYear}`}
+                        className="w-full h-auto object-contain bg-gray-800"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
