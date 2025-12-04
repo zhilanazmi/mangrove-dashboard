@@ -438,7 +438,7 @@ function App() {
             {/* Right Side - Dynamic Content */}
             <div className="lg:col-span-9">
               {/* Stats Cards */}
-              <div
+              {/* <div
                 className={`grid md:grid-cols-3 gap-4 mb-8 transition-all duration-500 ${
                   animateStats
                     ? "opacity-0 translate-y-4"
@@ -491,7 +491,7 @@ function App() {
                     Vegetasi
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               {/* Classification Image */}
               <div className="bg-gradient-to-br from-slate-700/40 to-slate-800/40 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-400/20 hover:border-slate-400/50 transition-all duration-300 overflow-hidden group">
