@@ -1,12 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Waves,
-  TreePine,
-  TrendingUp,
-  Activity,
-  Leaf,
-  MapPin,
-} from "lucide-react";
+import { TreePine, Activity, Leaf, MapPin } from "lucide-react";
 import {
   BarChart,
   Bar,
@@ -33,28 +26,54 @@ import mg5 from "./assets/images/mangrove/IMG-20251205-WA0057.jpg";
 import logo_lp2m from "./assets/images/logo/lppm.png";
 import logo_itenas from "./assets/images/logo/itenas.png";
 
+// Import dokumentasi images
+import dok1 from "./assets/images/dokumentasi/IMG-20251205-WA0012.jpg";
+import dok2 from "./assets/images/dokumentasi/IMG-20251205-WA0013.jpg";
+import dok3 from "./assets/images/dokumentasi/IMG-20251205-WA0014.jpg";
+import dok4 from "./assets/images/dokumentasi/IMG-20251205-WA0015.jpg";
+import dok5 from "./assets/images/dokumentasi/IMG-20251205-WA0018.jpg";
+import dok6 from "./assets/images/dokumentasi/IMG-20251205-WA0019.jpg";
+import dok7 from "./assets/images/dokumentasi/IMG-20251205-WA0020.jpg";
+import dok8 from "./assets/images/dokumentasi/IMG-20251205-WA0021.jpg";
+import dok9 from "./assets/images/dokumentasi/IMG-20251205-WA0022.jpg";
+import dok10 from "./assets/images/dokumentasi/IMG-20251205-WA0023.jpg";
+import dok11 from "./assets/images/dokumentasi/IMG-20251205-WA0024.jpg";
+import dok12 from "./assets/images/dokumentasi/IMG-20251205-WA0025.jpg";
+import dok13 from "./assets/images/dokumentasi/IMG-20251205-WA0026.jpg";
+import dok14 from "./assets/images/dokumentasi/IMG-20251205-WA0027.jpg";
+import dok15 from "./assets/images/dokumentasi/IMG-20251205-WA0028.jpg";
+import dok16 from "./assets/images/dokumentasi/IMG-20251205-WA0029.jpg";
+import dok17 from "./assets/images/dokumentasi/IMG-20251205-WA0030.jpg";
+import dok18 from "./assets/images/dokumentasi/IMG-20251205-WA0031.jpg";
+import dok19 from "./assets/images/dokumentasi/IMG-20251205-WA0032.jpg";
+import dok20 from "./assets/images/dokumentasi/IMG-20251205-WA0033.jpg";
+import dok21 from "./assets/images/dokumentasi/IMG-20251205-WA0034.jpg";
+import dok22 from "./assets/images/dokumentasi/IMG-20251205-WA0035.jpg";
+import dok23 from "./assets/images/dokumentasi/IMG-20251205-WA0036.jpg";
+import dok24 from "./assets/images/dokumentasi/IMG-20251205-WA0037.jpg";
+import dok25 from "./assets/images/dokumentasi/IMG-20251205-WA0038.jpg";
+import dok26 from "./assets/images/dokumentasi/IMG-20251205-WA0039.jpg";
+import dok27 from "./assets/images/dokumentasi/IMG-20251205-WA0040.jpg";
+import dok28 from "./assets/images/dokumentasi/IMG-20251205-WA0041.jpg";
+import dok29 from "./assets/images/dokumentasi/IMG-20251205-WA0042.jpg";
+import dok30 from "./assets/images/dokumentasi/IMG-20251205-WA0043.jpg";
+import dok31 from "./assets/images/dokumentasi/IMG-20251205-WA0044.jpg";
+import dok32 from "./assets/images/dokumentasi/IMG-20251205-WA0045.jpg";
+import dok33 from "./assets/images/dokumentasi/IMG-20251205-WA0048.jpg";
+import dok34 from "./assets/images/dokumentasi/IMG-20251205-WA0049.jpg";
+import dok35 from "./assets/images/dokumentasi/IMG-20251205-WA0050.jpg";
+import dok36 from "./assets/images/dokumentasi/IMG-20251205-WA0051.jpg";
+import dok37 from "./assets/images/dokumentasi/IMG-20251205-WA0052.jpg";
+import dok38 from "./assets/images/dokumentasi/IMG-20251205-WA0053.jpg";
+import dok39 from "./assets/images/dokumentasi/IMG-20251205-WA0054.jpg";
+
 function App() {
   const [selectedYear, setSelectedYear] = useState(1990);
   const [hoveredYear, setHoveredYear] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const [animateStats, setAnimateStats] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   const mangroveImages = [mg1, mg2, mg3, mg4, mg5];
-  const mangroveCaptions = [
-    "Ekosistem Pesisir",
-    "Biodiversity Hotspot",
-    "Hutan Bakau",
-    "Zona Pasang Surut",
-    "Restorasi Pantai",
-  ];
-  const mangroveSubcaptions = [
-    "Hutan Mangrove Tropis",
-    "Keanekaragaman Hayati Tinggi",
-    "Vegetasi Karismatik Pesisir",
-    "Area Intertidal",
-    "Upaya Restorasi Lokal",
-  ];
 
   const years = [1990, 2000, 2010, 2020, 2023, 2025, 2030];
 
@@ -128,12 +147,6 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setAnimateStats(true);
-    const timer = setTimeout(() => setAnimateStats(false), 100);
-    return () => clearTimeout(timer);
-  }, [selectedYear]);
-
   // Autoplay carousel: advance every 5 seconds
   useEffect(() => {
     const t = setInterval(() => {
@@ -159,22 +172,6 @@ function App() {
     );
   };
 
-  const getYearStats = (year: number) => {
-    const statsMap: {
-      [key: number]: { area: string; health: string; coverage: string };
-    } = {
-      1990: { area: "45,234", health: "87%", coverage: "62%" },
-      2000: { area: "42,891", health: "84%", coverage: "59%" },
-      2010: { area: "38,456", health: "79%", coverage: "55%" },
-      2020: { area: "35,123", health: "73%", coverage: "50%" },
-      2025: { area: "36,789", health: "76%", coverage: "52%" },
-      2030: { area: "38,912", health: "81%", coverage: "56%" },
-    };
-    return statsMap[year] || statsMap[1990];
-  };
-
-  const currentStats = getYearStats(selectedYear);
-
   // Data untuk chart berdasarkan selectedYear
   const chartData = [
     {
@@ -190,30 +187,30 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-teal-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-100 to-slate-200">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-1/2 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gray-400 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob"></div>
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-slate-400 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-1/2 w-96 h-96 bg-gray-500 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Header */}
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-gradient-to-r from-emerald-900/95 to-teal-900/95 backdrop-blur-md shadow-2xl py-3"
-            : "bg-gradient-to-r from-emerald-900/50 to-teal-900/50 backdrop-blur-sm py-4"
+            ? "bg-white/95 backdrop-blur-md shadow-2xl py-3"
+            : "bg-white/50 backdrop-blur-sm py-4"
         }`}
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:bg-white transition-all duration-300 hover:shadow-xl">
+            <div>
               <img src={logo_lp2m} alt="Logo LP2M" className="h-14" />
             </div>
           </div>
           <div className="flex items-center gap-3 hidden md:flex">
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:bg-white transition-all duration-300 hover:shadow-xl">
+            <div className="h-20">
               <img src={logo_itenas} alt="Logo ITENAS" className="h-16" />
             </div>
           </div>
@@ -224,9 +221,9 @@ function App() {
       <section className="pt-32 pb-20 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-4 leading-tight">
+            <h2 className="text-5xl md:text-7xl font-black text-gray-900 mb-4 leading-tight">
               Monitor Ekosistem
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-300">
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800">
                 Mangrove Pantai
               </span>
             </h2>
@@ -283,31 +280,31 @@ function App() {
       {/* General Info Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-br from-emerald-900/40 to-teal-900/40 backdrop-blur-xl rounded-3xl shadow-2xl p-10 md:p-16 border border-emerald-400/20 hover:border-emerald-400/50 transition-all duration-300 group">
+          <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-10 md:p-16 border border-gray-200 hover:border-gray-300 transition-all duration-300 group">
             <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 p-4 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+              <div className="flex-shrink-0 p-4 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl shadow-lg transform group-hover:scale-110 transition-transform duration-300">
                 <Leaf className="w-8 h-8 text-white" />
               </div>
               <div className="flex-1">
-                <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
                   Penjelasan tentang Mangrove
                 </h2>
-                <div className="text-gray-300 leading-relaxed space-y-4 text-lg">
-                  <p className="text-teal-100">
+                <div className="text-gray-700 leading-relaxed space-y-4 text-lg">
+                  <p className="text-gray-600">
                     Hutan mangrove adalah ekosistem pesisir yang unik dan
                     penting, tumbuh di daerah pasang surut antara daratan dan
                     laut. Mangrove memiliki peran vital dalam menjaga
                     keseimbangan ekosistem pesisir dan melindungi garis pantai
                     dari abrasi dan tsunami.
                   </p>
-                  <p className="text-teal-100">
+                  <p className="text-gray-600">
                     Ekosistem mangrove menyediakan habitat bagi berbagai spesies
                     flora dan fauna, termasuk ikan, kepiting, burung, dan
                     reptil. Selain itu, mangrove berperan sebagai penyerap
                     karbon yang sangat efektif, membantu mengurangi dampak
                     perubahan iklim global.
                   </p>
-                  <p className="text-teal-100">
+                  <p className="text-gray-600">
                     Monitoring dan pelestarian hutan mangrove menjadi sangat
                     penting untuk menjaga keberlanjutan lingkungan pesisir dan
                     kesejahteraan masyarakat yang bergantung pada ekosistem ini.
@@ -322,28 +319,28 @@ function App() {
       {/* Classification Info Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-br from-blue-900/40 to-cyan-900/40 backdrop-blur-xl rounded-3xl shadow-2xl p-10 md:p-16 border border-blue-400/20 hover:border-blue-400/50 transition-all duration-300 group">
+          <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-10 md:p-16 border border-gray-200 hover:border-gray-300 transition-all duration-300 group">
             <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 p-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+              <div className="flex-shrink-0 p-4 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl shadow-lg transform group-hover:scale-110 transition-transform duration-300">
                 <Activity className="w-8 h-8 text-white" />
               </div>
               <div className="flex-1">
-                <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
                   Penjelasan Klasifikasi Mangrove
                 </h2>
-                <div className="text-gray-300 leading-relaxed space-y-4 text-lg">
-                  <p className="text-blue-100">
+                <div className="text-gray-700 leading-relaxed space-y-4 text-lg">
+                  <p className="text-gray-600">
                     Klasifikasi mangrove menggunakan teknologi penginderaan jauh
                     (remote sensing) dan analisis citra satelit untuk memetakan
                     distribusi dan kondisi hutan mangrove di wilayah pesisir
                     dengan presisi tinggi.
                   </p>
-                  <p className="text-blue-100">
+                  <p className="text-gray-600">
                     Melalui analisis temporal, kita dapat memantau perubahan
                     tutupan mangrove dari waktu ke waktu, mengidentifikasi area
                     yang mengalami degradasi atau restorasi dengan akurat.
                   </p>
-                  <p className="text-blue-100">
+                  <p className="text-gray-600">
                     Sistem klasifikasi menggunakan kombinasi indeks vegetasi,
                     analisis spektral, dan algoritma machine learning untuk
                     membedakan mangrove dari vegetasi lainnya.
@@ -358,19 +355,19 @@ function App() {
       {/* Map Container Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-8 text-center">
             Peta Lokasi Mangrove
           </h2>
-          <div className="bg-gradient-to-br from-slate-700/40 to-slate-800/40 backdrop-blur-xl rounded-3xl border-2 border-slate-400/20 shadow-2xl hover:border-slate-400/50 transition-all duration-300 overflow-hidden p-4 md:p-8">
-            <div className="bg-slate-900/50 rounded-2xl overflow-hidden border border-slate-600/30 shadow-inner relative">
+          <div className="bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-gray-200 shadow-2xl hover:border-gray-300 transition-all duration-300 overflow-hidden p-4 md:p-8">
+            <div className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 shadow-inner relative">
               {/* Custom Header Overlay untuk menutupi header Google My Maps */}
-              <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-r from-emerald-900/95 to-teal-900/95 backdrop-blur-md px-6 py-3 flex items-center justify-between shadow-lg border-b border-emerald-400/30">
+              <div className="absolute top-0 left-0 right-0 z-10 bg-white/95 backdrop-blur-md px-6 py-3 flex items-center justify-between shadow-lg border-b border-gray-200">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-lg shadow-lg">
+                  <div className="p-2 bg-gradient-to-br from-gray-700 to-gray-900 rounded-lg shadow-lg">
                     <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-white">
+                    <h3 className="text-lg font-black text-gray-900">
                       Peta Lokasi Mangrove
                     </h3>
                   </div>
@@ -392,15 +389,15 @@ function App() {
       {/* Interactive Classification Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-12 text-center">
             Hasil Klasifikasi Mangrove
           </h2>
 
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Left Side - Year Selectors */}
             <div className="lg:col-span-3">
-              <div className="bg-gradient-to-b from-emerald-900/60 to-teal-900/60 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-emerald-400/30 sticky top-32">
-                <h3 className="text-2xl font-black text-white mb-8 text-center">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-gray-200 sticky top-32">
+                <h3 className="text-2xl font-black text-gray-900 mb-8 text-center">
                   Pilih Tahun
                 </h3>
                 <div className="space-y-3">
@@ -421,15 +418,13 @@ function App() {
                       <div
                         className={`absolute inset-0 transition-all duration-300 ${
                           selectedYear === year
-                            ? "bg-gradient-to-r from-emerald-500 to-teal-500 shadow-2xl"
-                            : "bg-white/10 backdrop-blur-sm"
+                            ? "bg-gradient-to-r from-gray-800 to-gray-900 shadow-2xl"
+                            : "bg-gray-100 backdrop-blur-sm"
                         }`}
                       ></div>
                       <span
                         className={`relative z-10 flex items-center justify-center gap-2 ${
-                          selectedYear === year
-                            ? "text-white"
-                            : "text-emerald-200"
+                          selectedYear === year ? "text-white" : "text-gray-700"
                         }`}
                       >
                         {/* {selectedYear === year && (
@@ -442,12 +437,12 @@ function App() {
                 </div>
 
                 {/* Mini Stats */}
-                <div className="mt-10 pt-8 border-t border-emerald-400/30 space-y-4">
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-                    <p className="text-emerald-300 text-xs font-bold uppercase">
+                <div className="mt-10 pt-8 border-t border-gray-300 space-y-4">
+                  <div className="bg-gray-50 backdrop-blur-sm rounded-xl p-4 hover:bg-gray-100 transition-all duration-300">
+                    <p className="text-gray-600 text-xs font-bold uppercase">
                       Tahun Dipilih
                     </p>
-                    <p className="text-white text-3xl font-black">
+                    <p className="text-gray-900 text-3xl font-black">
                       {selectedYear}
                     </p>
                   </div>
@@ -458,13 +453,13 @@ function App() {
             {/* Right Side - Dynamic Content */}
             <div className="lg:col-span-9">
               {/* Classification Image */}
-              <div className="bg-gradient-to-br from-slate-700/40 to-slate-800/40 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-400/20 hover:border-slate-400/50 transition-all duration-300 overflow-hidden group">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 overflow-hidden group">
                 <div className="mb-6 text-center">
-                  <span className="inline-block bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-3 rounded-full font-black text-lg shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                  <span className="inline-block bg-gradient-to-r from-gray-800 to-gray-900 text-white px-8 py-3 rounded-full font-black text-lg shadow-xl transform group-hover:scale-110 transition-transform duration-300">
                     Data Tahun {selectedYear}
                   </span>
                 </div>
-                <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-emerald-400/30 group-hover:border-emerald-400/60 transition-all duration-300 transform group-hover:scale-[1.02]">
+                <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-300 group-hover:border-gray-400 transition-all duration-300 transform group-hover:scale-[1.02]">
                   <div
                     key={data[selectedYear].year}
                     className="bg-white p-6 rounded-lg shadow-md"
@@ -511,14 +506,14 @@ function App() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300">
+                <div className="mt-6 bg-gray-50 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 hover:border-gray-300 transition-all duration-300">
                   <div className="text-center">
-                    <p className="text-gray-200 text-lg mb-4">
-                      <span className="font-black text-emerald-300">
+                    <p className="text-gray-700 text-lg mb-4">
+                      <span className="font-black text-gray-900">
                         Peta Klasifikasi Tahun {selectedYear}
                       </span>
                     </p>
-                    <div className="rounded-xl overflow-hidden shadow-lg border border-emerald-400/20">
+                    <div className="rounded-xl overflow-hidden shadow-lg border border-gray-300">
                       <img
                         src={getClassificationImage(selectedYear)}
                         alt={`Klasifikasi Mangrove ${selectedYear}`}
@@ -533,138 +528,150 @@ function App() {
         </div>
       </section>
 
-      {/* Charts Section */}
+      {/* Documentation Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-12 text-center">
-            Grafik-Grafik & Analisis
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Chart Placeholder 1 */}
-            <div className="bg-gradient-to-br from-emerald-900/40 to-teal-900/40 backdrop-blur-xl rounded-3xl border border-emerald-400/20 p-8 min-h-[350px] flex flex-col items-center justify-center shadow-2xl hover:border-emerald-400/50 hover:shadow-emerald-500/20 transition-all duration-300 group cursor-pointer">
-              <div className="w-24 h-24 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mb-6 shadow-2xl transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
-                <svg
-                  className="w-12 h-12 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-black text-white mb-3 text-center">
-                Tren Perubahan Luas
-              </h3>
-              <p className="text-emerald-200 text-center font-bold">
-                Visualisasi temporal perubahan area mangrove dari 1990-2030
-              </p>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+              Dokumentasi Kegiatan
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Momen dan aktivitas penelitian ekosistem mangrove di lapangan
+            </p>
+          </div>
 
-            {/* Chart Placeholder 2 */}
-            <div className="bg-gradient-to-br from-blue-900/40 to-cyan-900/40 backdrop-blur-xl rounded-3xl border border-blue-400/20 p-8 min-h-[350px] flex flex-col items-center justify-center shadow-2xl hover:border-blue-400/50 hover:shadow-blue-500/20 transition-all duration-300 group cursor-pointer">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-6 shadow-2xl transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
-                <svg
-                  className="w-12 h-12 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            {[
+              dok1,
+              dok2,
+              dok3,
+              dok4,
+              dok5,
+              dok6,
+              dok7,
+              dok8,
+              dok9,
+              dok10,
+              dok11,
+              dok12,
+              dok13,
+              dok14,
+              dok15,
+              dok16,
+              dok17,
+              dok18,
+              dok19,
+              dok20,
+              dok21,
+              dok22,
+              dok23,
+              dok24,
+              dok25,
+              dok26,
+              dok27,
+              dok28,
+              dok29,
+              dok30,
+              dok31,
+              dok32,
+              dok33,
+              dok34,
+              dok35,
+              dok36,
+              dok37,
+              dok38,
+              dok39,
+            ].map((img, idx) => (
+              <div key={idx} className="break-inside-avoid mb-4">
+                <div className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white">
+                  <img
+                    src={img}
+                    alt={`Dokumentasi ${idx + 1}`}
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                  />
-                </svg>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <p className="text-white font-bold text-sm">
+                        Kegiatan Penelitian
+                      </p>
+                      <p className="text-white/80 text-xs">
+                        Monitoring Mangrove
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-2xl font-black text-white mb-3 text-center">
-                Komposisi Vegetasi
-              </h3>
-              <p className="text-blue-200 text-center font-bold">
-                Distribusi dan komposisi jenis mangrove di area monitoring
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white py-16 border-t border-slate-700/50">
+      <footer className="bg-gray-900 text-white py-16 border-t border-gray-700">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg">
+                <div className="p-2 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg">
                   <TreePine className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-xl font-black">Mangrove Monitor</span>
               </div>
-              <p className="text-slate-400 text-sm">
+              <p className="text-gray-400 text-sm">
                 Menjaga ekosistem pesisir untuk masa depan yang berkelanjutan
               </p>
             </div>
             <div>
               <h4 className="font-black text-white mb-4">Platform</h4>
-              <ul className="space-y-2 text-slate-400 text-sm">
-                <li className="hover:text-emerald-400 transition-colors cursor-pointer">
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Dashboard
                 </li>
-                <li className="hover:text-emerald-400 transition-colors cursor-pointer">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Analisis
                 </li>
-                <li className="hover:text-emerald-400 transition-colors cursor-pointer">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Peta
                 </li>
               </ul>
             </div>
             <div>
               <h4 className="font-black text-white mb-4">Tentang</h4>
-              <ul className="space-y-2 text-slate-400 text-sm">
-                <li className="hover:text-teal-400 transition-colors cursor-pointer">
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Misi Kami
                 </li>
-                <li className="hover:text-teal-400 transition-colors cursor-pointer">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Tim
                 </li>
-                <li className="hover:text-teal-400 transition-colors cursor-pointer">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Kontak
                 </li>
               </ul>
             </div>
             <div>
               <h4 className="font-black text-white mb-4">Sosial Media</h4>
-              <ul className="space-y-2 text-slate-400 text-sm">
-                <li className="hover:text-blue-400 transition-colors cursor-pointer">
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Facebook
                 </li>
-                <li className="hover:text-blue-400 transition-colors cursor-pointer">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Instagram
                 </li>
-                <li className="hover:text-blue-400 transition-colors cursor-pointer">
+                <li className="hover:text-gray-200 transition-colors cursor-pointer">
                   Twitter
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-slate-700/50 pt-8">
+          <div className="border-t border-gray-700 pt-8">
             <div className="text-center">
-              <p className="text-slate-400 mb-2">
+              <p className="text-gray-400 mb-2">
                 &copy; {new Date().getFullYear()} Mangrove Monitoring Dashboard.
                 All rights reserved.
               </p>
-              <p className="text-slate-500 text-sm">
+              <p className="text-gray-500 text-sm">
                 🌍 Melestarikan Ekosistem Pesisir Melalui Teknologi
               </p>
             </div>
