@@ -18,7 +18,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Import gambar klasifikasi
 import img1990 from "./assets/images/CLASS_RF_1990.png";
 import img2000 from "./assets/images/CLASS_RF_2000.png";
 import img2010 from "./assets/images/CLASS_RF_2010.png";
@@ -26,12 +25,36 @@ import img2015 from "./assets/images/CLASS_RF_2015.png";
 import img2020 from "./assets/images/CLASS_RF_2020.png";
 import img2023 from "./assets/images/CLASS_RF_2023.png";
 import img2025 from "./assets/images/CLASS_RF_2025.png";
+import mg1 from "./assets/images/mangrove/IMG-20251205-WA0046.jpg";
+import mg2 from "./assets/images/mangrove/IMG-20251205-WA0047.jpg";
+import mg3 from "./assets/images/mangrove/IMG-20251205-WA0055.jpg";
+import mg4 from "./assets/images/mangrove/IMG-20251205-WA0056.jpg";
+import mg5 from "./assets/images/mangrove/IMG-20251205-WA0057.jpg";
+import logo_lp2m from "./assets/images/logo/lppm.png";
+import logo_itenas from "./assets/images/logo/itenas.png";
 
 function App() {
   const [selectedYear, setSelectedYear] = useState(1990);
   const [hoveredYear, setHoveredYear] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [animateStats, setAnimateStats] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const mangroveImages = [mg1, mg2, mg3, mg4, mg5];
+  const mangroveCaptions = [
+    "Ekosistem Pesisir",
+    "Biodiversity Hotspot",
+    "Hutan Bakau",
+    "Zona Pasang Surut",
+    "Restorasi Pantai",
+  ];
+  const mangroveSubcaptions = [
+    "Hutan Mangrove Tropis",
+    "Keanekaragaman Hayati Tinggi",
+    "Vegetasi Karismatik Pesisir",
+    "Area Intertidal",
+    "Upaya Restorasi Lokal",
+  ];
 
   const years = [1990, 2000, 2010, 2020, 2023, 2025, 2030];
 
@@ -111,6 +134,14 @@ function App() {
     return () => clearTimeout(timer);
   }, [selectedYear]);
 
+  // Autoplay carousel: advance every 5 seconds
+  useEffect(() => {
+    const t = setInterval(() => {
+      setCarouselIndex((i) => (i + 1) % mangroveImages.length);
+    }, 5000);
+    return () => clearInterval(t);
+  }, [mangroveImages.length]);
+
   const getClassificationImage = (year: number) => {
     const imageMap: { [key: number]: string } = {
       1990: img1990,
@@ -177,20 +208,14 @@ function App() {
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="p-2 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-lg transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <TreePine className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl md:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-teal-300">
-                Mangrove Monitor
-              </h1>
-              <p className="text-xs text-teal-300 font-semibold">
-                Coastal Ecosystem Tracker
-              </p>
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:bg-white transition-all duration-300 hover:shadow-xl">
+              <img src={logo_lp2m} alt="Logo LP2M" className="h-14" />
             </div>
           </div>
           <div className="flex items-center gap-3 hidden md:flex">
-            <Waves className="w-6 h-6 text-teal-400 animate-pulse" />
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:bg-white transition-all duration-300 hover:shadow-xl">
+              <img src={logo_itenas} alt="Logo ITENAS" className="h-16" />
+            </div>
           </div>
         </div>
       </header>
@@ -205,42 +230,50 @@ function App() {
                 Mangrove Pantai
               </span>
             </h2>
-            <p className="text-xl text-teal-200 max-w-2xl mx-auto">
-              Teknologi penginderaan jauh untuk perlindungan hutan mangrove yang
-              berkelanjutan
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="group relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10 group-hover:to-black/40 transition-all duration-300"></div>
+          <div className="mb-12 w-full">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center transition-all duration-500">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10 transition-all duration-300"></div>
               <img
-                src="https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Mangrove Forest 1"
-                className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
+                src={mangroveImages[carouselIndex]}
+                alt={`Mangrove ${carouselIndex + 1}`}
+                className="w-full h-auto max-h-[650px] object-contain bg-gray-800 transition-all duration-500"
               />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-white font-bold text-lg">
-                  Ekosistem Pesisir
-                </p>
-                <p className="text-teal-200 text-sm">Hutan Mangrove Tropis</p>
-              </div>
-            </div>
 
-            <div className="group relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10 group-hover:to-black/40 transition-all duration-300"></div>
-              <img
-                src="https://images.pexels.com/photos/3166785/pexels-photo-3166785.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Mangrove Forest 2"
-                className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-white font-bold text-lg">
-                  Biodiversity Hotspot
-                </p>
-                <p className="text-teal-200 text-sm">
-                  Keanekaragaman Hayati Tinggi
-                </p>
+              <button
+                onClick={() =>
+                  setCarouselIndex(
+                    (i) =>
+                      (i - 1 + mangroveImages.length) % mangroveImages.length
+                  )
+                }
+                aria-label="Previous"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full z-30"
+              >
+                ‹
+              </button>
+              <button
+                onClick={() =>
+                  setCarouselIndex((i) => (i + 1) % mangroveImages.length)
+                }
+                aria-label="Next"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full z-30"
+              >
+                ›
+              </button>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+                {mangroveImages.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCarouselIndex(i)}
+                    className={`w-3 h-3 rounded-full ${
+                      i === carouselIndex ? "bg-white" : "bg-white/40"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -352,19 +385,6 @@ function App() {
                 title="Peta Lokasi Mangrove - Google My Maps"
               ></iframe>
             </div>
-            <div className="mt-6 flex flex-col items-center gap-3 text-center">
-              <div className="flex items-center gap-3 text-emerald-300">
-                <MapPin className="w-5 h-5" />
-                <p className="text-sm font-bold">
-                  Visualisasi KML - Lokasi Hutan Mangrove
-                </p>
-              </div>
-              <p className="text-xs text-slate-400 max-w-xl">
-                💡 <strong>Petunjuk:</strong> Upload file KML Anda ke Google My
-                Maps, set ke public, lalu ambil embed URL-nya untuk ditampilkan
-                di sini
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -381,7 +401,7 @@ function App() {
             <div className="lg:col-span-3">
               <div className="bg-gradient-to-b from-emerald-900/60 to-teal-900/60 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-emerald-400/30 sticky top-32">
                 <h3 className="text-2xl font-black text-white mb-8 text-center">
-                  📅 Pilih Tahun
+                  Pilih Tahun
                 </h3>
                 <div className="space-y-3">
                   {years.map((year) => (
@@ -412,9 +432,9 @@ function App() {
                             : "text-emerald-200"
                         }`}
                       >
-                        {selectedYear === year && (
+                        {/* {selectedYear === year && (
                           <span className="text-lg">✓</span>
-                        )}
+                        )} */}
                         {year}
                       </span>
                     </button>
@@ -437,67 +457,11 @@ function App() {
 
             {/* Right Side - Dynamic Content */}
             <div className="lg:col-span-9">
-              {/* Stats Cards */}
-              {/* <div
-                className={`grid md:grid-cols-3 gap-4 mb-8 transition-all duration-500 ${
-                  animateStats
-                    ? "opacity-0 translate-y-4"
-                    : "opacity-100 translate-y-0"
-                }`}
-              >
-                <div className="bg-gradient-to-br from-emerald-500/30 to-teal-500/30 backdrop-blur-xl rounded-2xl p-6 border border-emerald-400/30 hover:border-emerald-400/60 transition-all duration-300 group cursor-pointer transform hover:scale-105">
-                  <div className="flex items-center justify-between mb-4">
-                    <p className="text-emerald-200 font-bold text-sm">
-                      Luas Area
-                    </p>
-                    <div className="p-2 bg-emerald-500/30 rounded-lg group-hover:bg-emerald-500/50 transition-all duration-300">
-                      <Leaf className="w-5 h-5 text-emerald-300" />
-                    </div>
-                  </div>
-                  <p className="text-white text-3xl font-black">
-                    {currentStats.area}
-                  </p>
-                  <p className="text-emerald-300 text-xs font-bold mt-2">
-                    Hectare
-                  </p>
-                </div>
-
-                <div className="bg-gradient-to-br from-teal-500/30 to-blue-500/30 backdrop-blur-xl rounded-2xl p-6 border border-teal-400/30 hover:border-teal-400/60 transition-all duration-300 group cursor-pointer transform hover:scale-105">
-                  <div className="flex items-center justify-between mb-4">
-                    <p className="text-teal-200 font-bold text-sm">Kesehatan</p>
-                    <div className="p-2 bg-teal-500/30 rounded-lg group-hover:bg-teal-500/50 transition-all duration-300">
-                      <Activity className="w-5 h-5 text-teal-300" />
-                    </div>
-                  </div>
-                  <p className="text-white text-3xl font-black">
-                    {currentStats.health}
-                  </p>
-                  <p className="text-teal-300 text-xs font-bold mt-2">
-                    Kondisi Optimal
-                  </p>
-                </div>
-
-                <div className="bg-gradient-to-br from-blue-500/30 to-cyan-500/30 backdrop-blur-xl rounded-2xl p-6 border border-blue-400/30 hover:border-blue-400/60 transition-all duration-300 group cursor-pointer transform hover:scale-105">
-                  <div className="flex items-center justify-between mb-4">
-                    <p className="text-blue-200 font-bold text-sm">Tutupan</p>
-                    <div className="p-2 bg-blue-500/30 rounded-lg group-hover:bg-blue-500/50 transition-all duration-300">
-                      <TrendingUp className="w-5 h-5 text-blue-300" />
-                    </div>
-                  </div>
-                  <p className="text-white text-3xl font-black">
-                    {currentStats.coverage}
-                  </p>
-                  <p className="text-blue-300 text-xs font-bold mt-2">
-                    Vegetasi
-                  </p>
-                </div>
-              </div> */}
-
               {/* Classification Image */}
               <div className="bg-gradient-to-br from-slate-700/40 to-slate-800/40 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-400/20 hover:border-slate-400/50 transition-all duration-300 overflow-hidden group">
                 <div className="mb-6 text-center">
                   <span className="inline-block bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-3 rounded-full font-black text-lg shadow-xl transform group-hover:scale-110 transition-transform duration-300">
-                    🔍 Data Tahun {selectedYear}
+                    Data Tahun {selectedYear}
                   </span>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-emerald-400/30 group-hover:border-emerald-400/60 transition-all duration-300 transform group-hover:scale-[1.02]">
