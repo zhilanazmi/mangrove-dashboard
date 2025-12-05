@@ -222,9 +222,9 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-5xl md:text-7xl font-black text-gray-900 mb-4 leading-tight">
-              Monitor Ekosistem
+              Monitor Mangrove
               <span className="block bg-clip-text text-transparent bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800">
-                Mangrove Pantai
+                Blanakan
               </span>
             </h2>
           </div>
