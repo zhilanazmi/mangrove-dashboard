@@ -33,7 +33,7 @@ import dok3 from "./assets/images/dokumentasi/IMG-20251205-WA0014.jpg";
 import dok4 from "./assets/images/dokumentasi/IMG-20251205-WA0015.jpg";
 import dok5 from "./assets/images/dokumentasi/IMG-20251205-WA0018.jpg";
 import dok6 from "./assets/images/dokumentasi/IMG-20251205-WA0019.jpg";
-import dok7 from "./assets/images/dokumentasi/IMG-20251205-WA0020.jpg";
+// import dok7 from "./assets/images/dokumentasi/IMG-20251205-WA0020.jpg";
 import dok8 from "./assets/images/dokumentasi/IMG-20251205-WA0021.jpg";
 import dok9 from "./assets/images/dokumentasi/IMG-20251205-WA0022.jpg";
 import dok10 from "./assets/images/dokumentasi/IMG-20251205-WA0023.jpg";
@@ -45,22 +45,22 @@ import dok15 from "./assets/images/dokumentasi/IMG-20251205-WA0028.jpg";
 import dok16 from "./assets/images/dokumentasi/IMG-20251205-WA0029.jpg";
 import dok17 from "./assets/images/dokumentasi/IMG-20251205-WA0030.jpg";
 import dok18 from "./assets/images/dokumentasi/IMG-20251205-WA0031.jpg";
-import dok19 from "./assets/images/dokumentasi/IMG-20251205-WA0032.jpg";
+// import dok19 from "./assets/images/dokumentasi/IMG-20251205-WA0032.jpg";
 import dok20 from "./assets/images/dokumentasi/IMG-20251205-WA0033.jpg";
-import dok21 from "./assets/images/dokumentasi/IMG-20251205-WA0034.jpg";
+// import dok21 from "./assets/images/dokumentasi/IMG-20251205-WA0034.jpg";
 import dok22 from "./assets/images/dokumentasi/IMG-20251205-WA0035.jpg";
 import dok23 from "./assets/images/dokumentasi/IMG-20251205-WA0036.jpg";
 import dok24 from "./assets/images/dokumentasi/IMG-20251205-WA0037.jpg";
-import dok25 from "./assets/images/dokumentasi/IMG-20251205-WA0038.jpg";
+// import dok25 from "./assets/images/dokumentasi/IMG-20251205-WA0038.jpg";
 import dok26 from "./assets/images/dokumentasi/IMG-20251205-WA0039.jpg";
 import dok27 from "./assets/images/dokumentasi/IMG-20251205-WA0040.jpg";
 import dok28 from "./assets/images/dokumentasi/IMG-20251205-WA0041.jpg";
-import dok29 from "./assets/images/dokumentasi/IMG-20251205-WA0042.jpg";
-import dok30 from "./assets/images/dokumentasi/IMG-20251205-WA0043.jpg";
-import dok31 from "./assets/images/dokumentasi/IMG-20251205-WA0044.jpg";
+// import dok29 from "./assets/images/dokumentasi/IMG-20251205-WA0042.jpg";
+// import dok30 from "./assets/images/dokumentasi/IMG-20251205-WA0043.jpg";
+// import dok31 from "./assets/images/dokumentasi/IMG-20251205-WA0044.jpg";
 import dok32 from "./assets/images/dokumentasi/IMG-20251205-WA0045.jpg";
-import dok33 from "./assets/images/dokumentasi/IMG-20251205-WA0048.jpg";
-import dok34 from "./assets/images/dokumentasi/IMG-20251205-WA0049.jpg";
+// import dok33 from "./assets/images/dokumentasi/IMG-20251205-WA0048.jpg";
+// import dok34 from "./assets/images/dokumentasi/IMG-20251205-WA0049.jpg";
 import dok35 from "./assets/images/dokumentasi/IMG-20251205-WA0050.jpg";
 import dok36 from "./assets/images/dokumentasi/IMG-20251205-WA0051.jpg";
 import dok37 from "./assets/images/dokumentasi/IMG-20251205-WA0052.jpg";
@@ -548,7 +548,7 @@ function App() {
               dok4,
               dok5,
               dok6,
-              dok7,
+              // dok7,
               dok8,
               dok9,
               dok10,
@@ -560,22 +560,22 @@ function App() {
               dok16,
               dok17,
               dok18,
-              dok19,
+              // dok19,
               dok20,
-              dok21,
+              // dok21,
               dok22,
               dok23,
               dok24,
-              dok25,
+              // dok25,
               dok26,
               dok27,
               dok28,
-              dok29,
-              dok30,
-              dok31,
+              // dok29,
+              // dok30,
+              // dok31,
               dok32,
-              dok33,
-              dok34,
+              // dok33,
+              // dok34,
               dok35,
               dok36,
               dok37,
